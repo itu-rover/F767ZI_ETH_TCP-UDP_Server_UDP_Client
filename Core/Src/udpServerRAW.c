@@ -53,9 +53,9 @@ void udpServer_init(void)
 
    /* 2. Bind the upcb to the local port */
    ip_addr_t myIPADDR;
-   IP_ADDR4(&myIPADDR, 192, 168, 1, 200);
+   IP_ADDR4(&myIPADDR, 192, 168, 1, 2);
 
-   err = udp_bind(upcb, &myIPADDR, 6);  // 7 is the server UDP port
+   err = udp_bind(upcb, &myIPADDR, 6100);  // 6100 is the server UDP port
 
 
    /* 3. Set a receive callback for the upcb */
@@ -77,7 +77,7 @@ void udp_server_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p
 	struct pbuf *txBuf = (struct pbuf * )0x20006000;
 
 	/* Get the IP of the Client */
-	char *remoteIP = ipaddr_ntoa(addr);
+	//char *remoteIP = ipaddr_ntoa(addr);
 
 	char buf[100];
 	udp_decode_message((char*)p->payload);
@@ -99,10 +99,10 @@ void udp_server_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p
 	/* free the UDP connection, so we can accept new clients */
 	udp_disconnect(upcb);
 
-	/* Free the p_tx buffer */
+	/* Free the p_tx(response) buffer */
 	pbuf_free(txBuf);
 
-	/* Free the p buffer */
+	/* Free the p(incoming) buffer */
 	pbuf_free(p);
 }
 

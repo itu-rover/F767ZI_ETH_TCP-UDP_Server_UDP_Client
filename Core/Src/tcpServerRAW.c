@@ -109,8 +109,8 @@ void tcp_server_init(void)
 
 	/* 2. bind _pcb to port 7 ( protocol) */
 	ip_addr_t myIPADDR;
-	IP_ADDR4(&myIPADDR, 192, 168, 1, 200);
-	err = tcp_bind(tpcb, &myIPADDR, 7);
+	IP_ADDR4(&myIPADDR, 192, 168, 1, 2);
+	err = tcp_bind(tpcb, &myIPADDR, 6300);
 
 	if (err == ERR_OK)
 	{
@@ -468,12 +468,11 @@ static void tcp_server_handle (struct tcp_pcb *tpcb, struct tcp_server_struct *e
 	struct tcp_server_struct *esTx = (struct tcp_server_struct *)0x20002000;
 
 	/* get the Remote IP */
-	ip4_addr_t inIP = tpcb->remote_ip;
-	uint16_t inPort = tpcb->remote_port;
+	//ip4_addr_t inIP = tpcb->remote_ip;
+	//uint16_t inPort = tpcb->remote_port;
 
 	/* Extract the IP */
-	char *remIP = ipaddr_ntoa(&inIP);
-
+	//char *remIP = ipaddr_ntoa(&inIP);
 
 	// DECODE MESSAGE
 	tcp_decode_message(es);

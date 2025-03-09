@@ -26,5 +26,6 @@
 
 void udpClient_connect(void);
 
+void udpClient_send(void);
 
 #endif /* INC_UDPCLIENTRAW_H_ */

@@ -30,30 +30,11 @@
 
 
 void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
-static void udpClient_send(void);
+
 
 struct udp_pcb *upcb;
 char buffer[100];
 int counter = 0;
-
-extern TIM_HandleTypeDef htim1;
-
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	udpClient_send();
-}
-
-
-/* IMPLEMENTATION FOR UDP CLIENT :   source:https://www.geeksforgeeks.org/udp-server-client-implementation-c/
-
-1. Create UDP socket.
-2. Send message to server.
-3. Wait until response from server is received.
-4. Process reply and go back to step 2, if necessary.
-5. Close socket descriptor and exit.
-*/
-
 
 void udpClient_connect(void)
 {
@@ -64,14 +45,14 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 192, 168, 1, 200);
-	udp_bind(upcb, &myIPaddr, 8);
+	IP_ADDR4(&myIPaddr, 192, 168, 1, 2);
+	udp_bind(upcb, &myIPaddr, 6101);
 
 
 	/* configure destination IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 192, 168, 1, 162);
-	err= udp_connect(upcb, &DestIPaddr, 5);
+	IP_ADDR4(&DestIPaddr, 192, 168, 1, 3);
+	err= udp_connect(upcb, &DestIPaddr, 6102);
 
 	if (err == ERR_OK)
 	{
@@ -83,7 +64,8 @@ void udpClient_connect(void)
 	}
 }
 
-static void udpClient_send(void)
+// Called in main.c
+void udpClient_send(void)
 {
   struct pbuf *txBuf = (struct pbuf * )0x20006000;
   char data[100];
