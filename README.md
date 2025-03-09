@@ -3,4 +3,4 @@
   
 - TCP and UDP server apllications append a string to the client message and send it back. They also control the LD2 led with commands form client. (LT = LED TOGGLE, LS = LED SET, LR = LED RESET)
   
--UDP Client periodicaly sends the number of server messages recieved during runtime using a timer interrupt.
+- UDP Client periodicaly sends the number of server messages recieved during runtime using a timer interrupt.
