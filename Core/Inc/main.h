@@ -31,7 +31,9 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "tcpServerRAW.h"
+#include "udpServerRAW.h"
+#include "udpClientRAW.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -75,6 +77,8 @@ void Error_Handler(void);
 #define RMII_RXD1_GPIO_Port GPIOC
 #define LD1_Pin GPIO_PIN_0
 #define LD1_GPIO_Port GPIOB
+#define NSS_2_Pin GPIO_PIN_12
+#define NSS_2_GPIO_Port GPIOB
 #define RMII_TXD1_Pin GPIO_PIN_13
 #define RMII_TXD1_GPIO_Port GPIOB
 #define LD3_Pin GPIO_PIN_14
@@ -109,6 +113,8 @@ void Error_Handler(void);
 #define SW0_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
+#define NSS_1_Pin GPIO_PIN_9
+#define NSS_1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
